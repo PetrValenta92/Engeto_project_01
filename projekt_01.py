@@ -32,7 +32,6 @@ garpike and stingray are also present.'''
 ]
 
 # Grafické oddělení statistik
-import pprint as pp
 SLICE = 80 * "="
 
 # Na začátku přivítá uživatele.
