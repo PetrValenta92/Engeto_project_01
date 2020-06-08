@@ -110,9 +110,8 @@ while SPAM:
         GRAF[BACON] = GRAF[BACON] + 1
 
 # Vytiskne graf
-while GRAF:
-    EGGS = GRAF.popitem()
-    print(str(EGGS[0]), str((EGGS[1] * "*")), str(EGGS[1]))
+for slovo, opakovani in GRAF.items():
+    print(str(slovo), str((opakovani * "*")), str(opakovani))
 
 print(SLICE)
 
