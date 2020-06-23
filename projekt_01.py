@@ -96,18 +96,10 @@ print(SLICE)
 
 # Program zobrazí jednoduchý sloupcový graf,
 # který bude reprezentovat četnost různých délek slov v textu.
-
 GRAF = {}
 
 # Smyčka vytvoří slovník kde klíč je počet písmen a hodnota je ukazuje
 # kolikrát je v textu
-# while words:
-    # single_word = words.pop(0)
-    # clean_word = len(single_word.strip(".,"))
-    # if clean_word not in GRAF:
-      #  GRAF.setdefault(clean_word, 1)
-    # else:
-      #  GRAF[clean_word] = GRAF[clean_word] + 1
 
 for word in WORDS:
     clean_word = len(word.strip(",."))
