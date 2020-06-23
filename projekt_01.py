@@ -106,9 +106,11 @@ for word in WORDS:
     GRAF.setdefault(clean_word, 1)
     GRAF[clean_word] += 1
 
+list_from_graf = sorted(GRAF.keys())
+
 # Vytiskne graf
-for word, repetition in GRAF.items():
-    print(f' {word} {repetition * "*"} {repetition}')
+for word in list_from_graf:
+    print(f' {word} {GRAF.get(word) * "*"} {GRAF.get(word)}')
 
 print(SLICE)
 
