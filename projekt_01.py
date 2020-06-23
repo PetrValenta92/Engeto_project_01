@@ -50,93 +50,76 @@ NAME = input("USERNAME: ")
 PASS = input("PASSWORD: ")
 
 # Zjistí, jestli zadané údaje odpovídají někomu z registrovaných uživatelů
-while REGISTR:
-    if PASS == REGISTR.get(NAME):
-        break
-    else:
-        print("Špatné uživatelské jméno, nebo heslo. Ukončuji program. Hezký den!")
-        exit()
+if PASS == REGISTR.get(NAME):
+    pass
+else:
+    print("Špatné uživatelské jméno, nebo heslo. Ukončuji program. Hezký den!")
+    exit()
 
 print(SLICE)
 
 # Program nechá uživatele vybrat mezi třemi texty, uloženými v proměnné TEXTS
-print("K analýze máš na výběr mezi 3 texty.")
-CHOICE = int(input("Prosím, zadej číslo 1-3: "))
+print(f"K analýze máš na výběr mezi {len(TEXTS)} texty.")
+CHOICE = int(input("Prosím, zadej číslo textu: "))
 print(SLICE)
 
 # Pro vybraný text spočítá statistiky
-TEXTIK = TEXTS[CHOICE-1]
+chosen_text = TEXTS[CHOICE-1]
 
 # Počet slov
-WORDS = TEXTIK.split()
+WORDS = chosen_text.split()
 print(f"V textu se nachází dohromady {len(WORDS)} slov.")
 
-CAPITAL = 0     # Počet slov začínajících velkým písmenem
-BIG = 0         # Počet slov psaných velkými písmeny
-SMALL = 0       # Počet slov psaných malými písmeny
-NUM = 0         # Počet čísel (ne cifer!)
+capital = 0     # Počet slov začínajících velkým písmenem
+big = 0         # Počet slov psaných velkými písmeny
+small = 0       # Počet slov psaných malými písmeny
+num = 0         # Počet čísel (ne cifer!)
+final_number = 0 # Použiji v závěru programu
 
-while WORDS:
-    WORDY = WORDS.pop(0)
-    if WORDY.istitle() == True:
-        CAPITAL += 1
-    elif WORDY.isupper() == True:
-        BIG += 1
-    elif WORDY.islower() == True:
-        SMALL += 1
-    elif WORDY.isdigit() == True:
-        NUM += 1
+for single_word in WORDS:
+    if single_word.istitle():
+        capital += 1
+    elif single_word.isupper():
+        big += 1
+    elif single_word.islower():
+        small += 1
+    elif single_word.isdigit():
+        num += 1
+        final_number += int(single_word)
 
-print(f"V textu se nachází dohromady {CAPITAL} slov, začínajících velkým písmenem.")
-print(f"V textu se nachází dohromady {BIG} slov, psaných velkými písmeny.")
-print(f"V textu se nachází dohromady {SMALL} slov, psaných malými písmeny.")
-print(f"V textu se nachází dohromady {NUM} číselných řetězců.")
+
+print(f"V textu se nachází dohromady {capital} slov, začínajících velkým písmenem.")
+print(f"V textu se nachází dohromady {big} slov, psaných velkými písmeny.")
+print(f"V textu se nachází dohromady {small} slov, psaných malými písmeny.")
+print(f"V textu se nachází dohromady {num} číselných řetězců.")
 print(SLICE)
 
 # Program zobrazí jednoduchý sloupcový graf,
 # který bude reprezentovat četnost různých délek slov v textu.
-SPAM = TEXTIK.split()
 
 GRAF = {}
 
 # Smyčka vytvoří slovník kde klíč je počet písmen a hodnota je ukazuje
 # kolikrát je v textu
-while SPAM:
-    EGGS = SPAM.pop(0)
-    BACON = len(EGGS.strip(".,"))
-    if BACON not in GRAF:
-        GRAF.setdefault(BACON, 1)
-    else:
-        GRAF[BACON] = GRAF[BACON] + 1
+# while words:
+    # single_word = words.pop(0)
+    # clean_word = len(single_word.strip(".,"))
+    # if clean_word not in GRAF:
+      #  GRAF.setdefault(clean_word, 1)
+    # else:
+      #  GRAF[clean_word] = GRAF[clean_word] + 1
+
+for word in WORDS:
+    clean_word = len(word.strip(",."))
+    GRAF.setdefault(clean_word, 1)
+    GRAF[clean_word] += 1
 
 # Vytiskne graf
-for slovo, opakovani in GRAF.items():
-    print(str(slovo), str((opakovani * "*")), str(opakovani))
+for word, repetition in GRAF.items():
+    print(f' {word} {repetition * "*"} {repetition}')
 
 print(SLICE)
 
 # Program spočítá součet všech čísel (ne cifer!) v textu.
-CISLA = TEXTIK.split()
-
-CISILKO = 0
-
-while CISLA:
-    NUMB = CISLA.pop(0)
-    if NUMB.isdigit() == True:
-        CISILKO += int(NUMB)
-
-print(f"Pokud sečteme všechna čísla v textu dostaneme: {CISILKO}.")
-print(SLICE)
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(f"Pokud sečteme všechna čísla v textu dostaneme: {final_number}.")
+print()
