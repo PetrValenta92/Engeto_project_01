@@ -76,7 +76,7 @@ final_number = 0  # Použiji v závěru programu
 
 for single_word in WORDS:
     clean_word = len(single_word.strip(",."))
-    GRAF.setdefault(clean_word, 1)
+    GRAF.setdefault(clean_word, 0)
     GRAF[clean_word] += 1
     if single_word.istitle():
         capital += 1
